@@ -1,10 +1,14 @@
 import { config, fields, collection } from "@keystatic/core";
 
+const isProd = process.env.NODE_ENV === "production";
+
 export default config({
     storage: {
-        kind: "local",
+        kind: isProd ? "cloud" : "local",
     },
-
+    cloud: {
+        project: "astro-tech/astro-tech",
+    },
     collections: {
         posts: collection({
             label: "Posts",
